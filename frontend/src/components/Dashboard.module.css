@@ -1,0 +1,131 @@
+.dashboard { max-width: 860px; }
+
+.loading { color: var(--text2); padding: 40px; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.title { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+.sub { color: var(--text2); font-size: 0.95rem; }
+
+.viewAllBtn {
+  padding: 8px 18px;
+  background: rgba(124,109,240,0.15);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  color: var(--accent2);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.viewAllBtn:hover { background: rgba(124,109,240,0.25); }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cardYellow { border-color: rgba(245,158,11,0.3); }
+.cardGreen { border-color: rgba(34,197,94,0.3); }
+.cardRed { border-color: rgba(239,68,68,0.3); }
+
+.cardLabel { font-size: 0.8rem; color: var(--text2); font-weight: 500; }
+.cardNum { font-size: 2rem; font-weight: 700; line-height: 1; }
+.cardYellow .cardNum { color: var(--yellow); }
+.cardGreen .cardNum { color: var(--green); }
+.cardRed .cardNum { color: var(--red); }
+
+.progressSection {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 28px;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.pct { font-weight: 700; color: var(--accent2); }
+
+.progressBar {
+  height: 8px;
+  background: var(--surface2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progressLabels {
+  display: flex;
+  gap: 20px;
+  font-size: 0.8rem;
+  color: var(--text2);
+}
+
+.sectionTitle { font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
+
+.empty { color: var(--text2); font-size: 0.9rem; padding: 16px 0; }
+
+.recentTask {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.statusDot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.taskInfo { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; }
+
+.taskTitle {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.taskGroup {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.taskStatus { font-size: 0.8rem; color: var(--text2); flex-shrink: 0; }
+.taskDue { font-size: 0.8rem; color: var(--text2); flex-shrink: 0; }

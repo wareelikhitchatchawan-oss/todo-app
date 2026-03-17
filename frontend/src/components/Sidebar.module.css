@@ -1,0 +1,248 @@
+.sidebar {
+  width: 240px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  gap: 24px;
+  min-height: 100vh;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.avatar {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.userInfo { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+
+.userName {
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userSelect {
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  font-size: 0.75rem;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+}
+
+.nav { display: flex; flex-direction: column; gap: 4px; }
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text2);
+  font-size: 0.9rem;
+  text-align: left;
+  transition: all 0.2s;
+}
+.navBtn:hover { background: var(--surface2); color: var(--text); }
+.navBtn.active { background: rgba(124,109,240,0.15); color: var(--accent2); }
+
+.groupSection { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+.groupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+  margin-bottom: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text2);
+}
+
+.addGroupBtn {
+  width: 20px; height: 20px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text2);
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.addGroupBtn:hover { border-color: var(--accent); color: var(--accent2); }
+
+.addGroupForm {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.addGroupForm input {
+  padding: 6px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+}
+.addGroupForm input:focus { border-color: var(--accent); }
+
+.colorPicker { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.colorDot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: transform 0.15s;
+}
+.colorDot:hover { transform: scale(1.2); }
+.selectedColor { border-color: #fff; transform: scale(1.2); }
+
+.confirmBtn {
+  padding: 6px;
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.groupBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text2);
+  font-size: 0.9rem;
+  text-align: left;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.groupBtn:hover { background: var(--surface2); color: var(--text); }
+.groupBtn:hover .deleteGroup { opacity: 1; }
+.groupBtn.activeGroup { background: var(--surface2); color: var(--text); }
+
+.groupDot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.groupName { flex: 1; }
+
+.deleteGroup {
+  opacity: 0;
+  color: var(--text2);
+  font-size: 1.1rem;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+.deleteGroup:hover { color: var(--red); }
+.addUserSection {
+  margin-top: -8px;
+}
+
+.addUserBtn {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(124,109,240,0.1);
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  color: var(--accent2);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s;
+}
+.addUserBtn:hover { background: rgba(124,109,240,0.2); }
+
+.addUserForm {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addUserForm input {
+  padding: 7px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+}
+.addUserForm input:focus { border-color: var(--accent); }
+
+.addUserBtns {
+  display: flex;
+  gap: 6px;
+}
+
+.cancelUserBtn {
+  flex: 1;
+  padding: 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text2);
+  font-size: 0.82rem;
+}
+.cancelUserBtn:hover { background: var(--surface); }
+.userEmail {
+  font-size: 0.75rem;
+  color: var(--text2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logoutBtn {
+  margin-top: auto;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text2);
+  font-size: 0.85rem;
+  text-align: left;
+  transition: all 0.2s;
+}
+.logoutBtn:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: rgba(239,68,68,0.08);
+}
