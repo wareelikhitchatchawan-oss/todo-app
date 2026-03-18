@@ -9,7 +9,7 @@ const emptyForm = { title: '', description: '', group_id: '', status: 'todo', pr
 
 function MentionInput({ value, onChange, users }) {
   const [show, setShow] = useState(false);
-  const [query, setQuery] = useState('');
+  const [, setQuery] = useState('');
   const [filtered, setFiltered] = useState([]);
 
   const handleChange = (e) => {
