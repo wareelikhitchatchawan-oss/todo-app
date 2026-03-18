@@ -33,7 +33,7 @@ function MentionInput({ value, onChange, users }) {
   };
 
   return (
-    <div style={{ position: 'relative' }} ref={ref}>
+    <div style={{ position: 'relative' }}>
       <input
         value={value}
         onChange={handleChange}
