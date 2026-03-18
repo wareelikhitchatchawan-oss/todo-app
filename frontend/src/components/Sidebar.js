@@ -4,7 +4,7 @@ import styles from './Sidebar.module.css';
 
 const COLORS = ['#6366f1','#22c55e','#ef4444','#f59e0b','#06b6d4','#ec4899'];
 
-export default function Sidebar({ user, users, onUserChange, onUserAdd, onLogout, view, onViewChange, filterGroup, onFilterGroup }) {
+export default function Sidebar({ user, users, onUserChange, onUserAdd, onLogout, view, onViewChange, filterGroup, onFilterGroup, isOpen }) {
   const [groups, setGroups] = useState([]);
   const [showAddGroup, setShowAddGroup] = useState(false);
   const [newGroup, setNewGroup] = useState({ name: '', color: COLORS[0] });
@@ -40,7 +40,7 @@ export default function Sidebar({ user, users, onUserChange, onUserAdd, onLogout
   };
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ''}`}>
       {/* User info */}
       <div className={styles.userSection}>
         <div className={styles.avatar}>{user.name[0]}</div>

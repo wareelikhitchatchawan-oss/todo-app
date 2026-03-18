@@ -13,6 +13,7 @@ export default function App() {
   const [mode, setMode] = useState('login');
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogin = async () => {
     if (!form.email || !form.password) return setError('กรุณากรอกอีเมลและรหัสผ่าน');
@@ -43,9 +44,7 @@ export default function App() {
       <div className={styles.loginBox}>
         <h1>📋 Todo App</h1>
         <p>{mode === 'login' ? 'เข้าสู่ระบบ' : 'สร้างบัญชีใหม่'}</p>
-
         {error && <div className={styles.errorMsg}>{error}</div>}
-
         <div className={styles.newUserForm}>
           {mode === 'register' && (
             <input placeholder="ชื่อ" value={form.name}
@@ -57,7 +56,6 @@ export default function App() {
             onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
             onKeyDown={e => e.key === 'Enter' && (mode === 'login' ? handleLogin() : handleRegister())} />
         </div>
-
         {mode === 'login' ? (
           <>
             <button className={styles.btnPrimary} onClick={handleLogin}>เข้าสู่ระบบ</button>
@@ -79,6 +77,7 @@ export default function App() {
 
   return (
     <div className={styles.layout}>
+      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
       <Sidebar
         user={user}
         users={users}
@@ -86,9 +85,10 @@ export default function App() {
         onUserAdd={u => setUsers(prev => [...prev, u])}
         onLogout={() => { setUser(null); setForm({ name: '', email: '', password: '' }); }}
         view={view}
-        onViewChange={setView}
+        onViewChange={(v) => { setView(v); setSidebarOpen(false); }}
         filterGroup={filterGroup}
-        onFilterGroup={setFilterGroup}
+        onFilterGroup={(g) => { setFilterGroup(g); setSidebarOpen(false); }}
+        isOpen={sidebarOpen}
       />
       <main className={styles.main}>
         {view === 'dashboard'
@@ -96,6 +96,9 @@ export default function App() {
           : <TaskList user={user} filterGroup={filterGroup} />
         }
       </main>
+      <button className={styles.menuBtn} onClick={() => setSidebarOpen(!sidebarOpen)}>
+        {sidebarOpen ? '✕' : '☰'}
+      </button>
     </div>
   );
 }

@@ -7,6 +7,22 @@
   padding: 24px 16px;
   gap: 24px;
   min-height: 100vh;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 100;
+    transform: translateX(-100%);
+  }
+  .sidebarOpen {
+    transform: translateX(0);
+  }
 }
 
 .userSection {
@@ -31,6 +47,14 @@
 .userName {
   font-weight: 600;
   font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userEmail {
+  font-size: 0.75rem;
+  color: var(--text2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -168,9 +192,8 @@
   line-height: 1;
 }
 .deleteGroup:hover { color: var(--red); }
-.addUserSection {
-  margin-top: -8px;
-}
+
+.addUserSection { margin-top: -8px; }
 
 .addUserBtn {
   width: 100%;
@@ -207,10 +230,7 @@
 }
 .addUserForm input:focus { border-color: var(--accent); }
 
-.addUserBtns {
-  display: flex;
-  gap: 6px;
-}
+.addUserBtns { display: flex; gap: 6px; }
 
 .cancelUserBtn {
   flex: 1;
@@ -222,13 +242,6 @@
   font-size: 0.82rem;
 }
 .cancelUserBtn:hover { background: var(--surface); }
-.userEmail {
-  font-size: 0.75rem;
-  color: var(--text2);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 .logoutBtn {
   margin-top: auto;
