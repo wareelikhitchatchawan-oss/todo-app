@@ -11,7 +11,6 @@ function MentionInput({ value, onChange, users }) {
   const [show, setShow] = useState(false);
   const [query, setQuery] = useState('');
   const [filtered, setFiltered] = useState([]);
-  const ref = useRef();
 
   const handleChange = (e) => {
     const val = e.target.value;
