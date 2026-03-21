@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getUsers, createUser } from './api';
+import { getUsers } from './api';
 import Dashboard from './components/Dashboard';
 import TaskList from './components/TaskList';
 import Sidebar from './components/Sidebar';
@@ -15,41 +15,60 @@ export default function App() {
   useEffect(() => {
     getUsers().then(data => {
       setUsers(data);
-      if (data.length > 0) setUser(data[0]);
+      if (data.length > 0) setUser(data[0]); // เลือก user แรก
     });
   }, []);
 
-  if (!user) return (
-    <div className={styles.loginWrap}>
-      <div className={styles.loginBox}>
-        <h1>📋 Todo App</h1>
-        <p>กำลังโหลด...</p>
+  if (!user) {
+    return (
+      <div className={styles.loginWrap}>
+        <div className={styles.loginBox}>
+          <h1>📋 Todo App</h1>
+          <p>ไม่มีผู้ใช้งานในระบบ</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 
   return (
     <div className={styles.layout}>
-      {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
+      {sidebarOpen && (
+        <div
+          className={styles.overlay}
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       <Sidebar
         user={user}
         users={users}
         onUserChange={setUser}
-        onUserAdd={u => setUsers(prev => [...prev, u])}
         onLogout={() => setUser(null)}
         view={view}
-        onViewChange={(v) => { setView(v); setSidebarOpen(false); }}
+        onViewChange={(v) => {
+          setView(v);
+          setSidebarOpen(false);
+        }}
         filterGroup={filterGroup}
-        onFilterGroup={(g) => { setFilterGroup(g); setSidebarOpen(false); }}
+        onFilterGroup={(g) => {
+          setFilterGroup(g);
+          setSidebarOpen(false);
+        }}
         isOpen={sidebarOpen}
       />
+
       <main className={styles.main}>
-        {view === 'dashboard'
-          ? <Dashboard user={user} onViewTasks={() => setView('tasks')} />
-          : <TaskList user={user} filterGroup={filterGroup} />
-        }
+        {view === 'dashboard' ? (
+          <Dashboard user={user} onViewTasks={() => setView('tasks')} />
+        ) : (
+          <TaskList user={user} filterGroup={filterGroup} />
+        )}
       </main>
-      <button className={styles.menuBtn} onClick={() => setSidebarOpen(!sidebarOpen)}>
+
+      <button
+        className={styles.menuBtn}
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
         {sidebarOpen ? '✕' : '☰'}
       </button>
     </div>
