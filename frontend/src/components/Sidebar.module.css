@@ -14,60 +14,28 @@
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     height: 100vh;
     z-index: 100;
     transform: translateX(-100%);
   }
-  .sidebarOpen {
-    transform: translateX(0);
-  }
+  .sidebarOpen { transform: translateX(0); }
 }
 
-.userSection {
+.appHeader {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
 }
 
-.avatar {
-  width: 40px; height: 40px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 1.1rem;
-  flex-shrink: 0;
-}
+.appIcon { font-size: 1.4rem; }
 
-.userInfo { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-
-.userName {
-  font-weight: 600;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.userEmail {
-  font-size: 0.75rem;
-  color: var(--text2);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.userSelect {
-  background: transparent;
-  border: none;
-  color: var(--text2);
-  font-size: 0.75rem;
-  cursor: pointer;
-  outline: none;
-  width: 100%;
+.appName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent2);
 }
 
 .nav { display: flex; flex-direction: column; gap: 4px; }
@@ -192,70 +160,3 @@
   line-height: 1;
 }
 .deleteGroup:hover { color: var(--red); }
-
-.addUserSection { margin-top: -8px; }
-
-.addUserBtn {
-  width: 100%;
-  padding: 8px 12px;
-  background: rgba(124,109,240,0.1);
-  border: 1px dashed var(--accent);
-  border-radius: 8px;
-  color: var(--accent2);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-align: center;
-  transition: all 0.2s;
-}
-.addUserBtn:hover { background: rgba(124,109,240,0.2); }
-
-.addUserForm {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.addUserForm input {
-  padding: 7px 10px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  font-size: 0.85rem;
-  outline: none;
-}
-.addUserForm input:focus { border-color: var(--accent); }
-
-.addUserBtns { display: flex; gap: 6px; }
-
-.cancelUserBtn {
-  flex: 1;
-  padding: 6px;
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text2);
-  font-size: 0.82rem;
-}
-.cancelUserBtn:hover { background: var(--surface); }
-
-.logoutBtn {
-  margin-top: auto;
-  padding: 10px 12px;
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text2);
-  font-size: 0.85rem;
-  text-align: left;
-  transition: all 0.2s;
-}
-.logoutBtn:hover {
-  border-color: var(--red);
-  color: var(--red);
-  background: rgba(239,68,68,0.08);
-}

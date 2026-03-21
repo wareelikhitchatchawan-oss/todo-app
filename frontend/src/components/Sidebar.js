@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getGroups, createGroup, deleteGroup, createUser } from '../api';
+import { getGroups, createGroup, deleteGroup } from '../api';
 import styles from './Sidebar.module.css';
 
 const COLORS = ['#6366f1','#22c55e','#ef4444','#f59e0b','#06b6d4','#ec4899'];
 
-export default function Sidebar({ user, users, onUserChange, onUserAdd, onLogout, view, onViewChange, filterGroup, onFilterGroup, isOpen }) {
+export default function Sidebar({ user, users, onUserChange, view, onViewChange, filterGroup, onFilterGroup }) {
   const [groups, setGroups] = useState([]);
   const [showAddGroup, setShowAddGroup] = useState(false);
   const [newGroup, setNewGroup] = useState({ name: '', color: COLORS[0] });
-  const [showAddUser, setShowAddUser] = useState(false);
-  const [newUser, setNewUser] = useState({ name: '', email: '', password: '' });
 
   useEffect(() => {
     if (user) getGroups(user.id).then(setGroups);
@@ -30,50 +28,13 @@ export default function Sidebar({ user, users, onUserChange, onUserAdd, onLogout
     if (filterGroup === id) onFilterGroup(null);
   };
 
-  const handleAddUser = async () => {
-    if (!newUser.name || !newUser.email || !newUser.password) return;
-    const u = await createUser(newUser);
-    onUserAdd(u);
-    onUserChange(u);
-    setNewUser({ name: '', email: '', password: '' });
-    setShowAddUser(false);
-  };
-
   return (
-    <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ''}`}>
-      {/* User info */}
-      <div className={styles.userSection}>
-        <div className={styles.avatar}>{user.name[0]}</div>
-        <div className={styles.userInfo}>
-          <span className={styles.userName}>{user.name}</span>
-          <span className={styles.userEmail}>{user.email}</span>
-        </div>
+    <aside className={styles.sidebar}>
+      <div className={styles.appHeader}>
+        <span className={styles.appIcon}>📋</span>
+        <span className={styles.appName}>Todo App</span>
       </div>
 
-      {/* Add User Button */}
-      <div className={styles.addUserSection}>
-        {showAddUser ? (
-          <div className={styles.addUserForm}>
-            <input placeholder="ชื่อ" value={newUser.name}
-              onChange={e => setNewUser(p => ({ ...p, name: e.target.value }))} />
-            <input placeholder="อีเมล" value={newUser.email}
-              onChange={e => setNewUser(p => ({ ...p, email: e.target.value }))} />
-            <input placeholder="รหัสผ่าน" type="password" value={newUser.password}
-              onChange={e => setNewUser(p => ({ ...p, password: e.target.value }))}
-              onKeyDown={e => e.key === 'Enter' && handleAddUser()} />
-            <div className={styles.addUserBtns}>
-              <button className={styles.cancelUserBtn} onClick={() => setShowAddUser(false)}>ยกเลิก</button>
-              <button className={styles.confirmBtn} onClick={handleAddUser}>สร้าง</button>
-            </div>
-          </div>
-        ) : (
-          <button className={styles.addUserBtn} onClick={() => setShowAddUser(true)}>
-            + สร้างผู้ใช้ใหม่
-          </button>
-        )}
-      </div>
-
-      {/* Navigation */}
       <nav className={styles.nav}>
         <button
           className={`${styles.navBtn} ${view === 'dashboard' ? styles.active : ''}`}
@@ -87,7 +48,6 @@ export default function Sidebar({ user, users, onUserChange, onUserAdd, onLogout
         </button>
       </nav>
 
-      {/* Groups */}
       <div className={styles.groupSection}>
         <div className={styles.groupHeader}>
           <span>หมวดหมู่</span>
@@ -119,11 +79,6 @@ export default function Sidebar({ user, users, onUserChange, onUserAdd, onLogout
           </button>
         ))}
       </div>
-
-      {/* Logout */}
-      <button className={styles.logoutBtn} onClick={onLogout}>
-        🚪 ออกจากระบบ
-      </button>
     </aside>
   );
 }
