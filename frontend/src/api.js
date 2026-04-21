@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const api = axios.create({ baseURL: 'https://todo-app-production-f0e4.up.railway.app/api' });
+const api = axios.create({
+  baseURL: 'https://todo-app-81cf.onrender.com/api'
+});
 
 export const getTasks = (userId, filters = {}) =>
   api.get(`/users/${userId}/tasks`, { params: filters }).then(r => r.data);
@@ -28,12 +30,3 @@ export const deleteGroup = (id) =>
 
 export const getStats = (userId) =>
   api.get(`/users/${userId}/stats`).then(r => r.data);
-
-export const getUsers = () =>
-  api.get('/users').then(r => r.data);
-
-export const createUser = (data) =>
-  api.post('/users', data).then(r => r.data);
-
-export const login = (email, password) =>
-  api.post('/login', { email, password }).then(r => r.data);
