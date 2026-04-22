@@ -12,30 +12,44 @@ export default function App() {
   const [users, setUsers] = useState([]);
   const [view, setView] = useState('dashboard');
   const [filterGroup, setFilterGroup] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const init = async () => {
-      const allUsers = await getUsers();
-      setUsers(allUsers);
+      try {
+        const allUsers = await getUsers();
+        setUsers(allUsers);
 
-      // ตรวจว่ามี guest user เดิมใน localStorage หรือยัง
-      const savedId = localStorage.getItem(GUEST_KEY);
-      if (savedId) {
-        const existing = allUsers.find(u => u.id === +savedId);
-        if (existing) { setUser(existing); return; }
+        const savedId = localStorage.getItem(GUEST_KEY);
+        if (savedId) {
+          const existing = allUsers.find(u => u.id === +savedId);
+          if (existing) { setUser(existing); return; }
+        }
+
+        const guest = await createUser({
+          name: 'Guest',
+          email: `guest_${Date.now()}@temp.com`,
+        });
+        localStorage.setItem(GUEST_KEY, guest.id);
+        setUsers(prev => [...prev, guest]);
+        setUser(guest);
+      } catch (err) {
+        setError(err.message || 'เชื่อมต่อ server ไม่ได้');
       }
-
-      // สร้าง guest user ใหม่
-      const guest = await createUser({
-        name: 'Guest',
-        email: `guest_${Date.now()}@temp.com`,
-      });
-      localStorage.setItem(GUEST_KEY, guest.id);
-      setUsers(prev => [...prev, guest]);
-      setUser(guest);
     };
     init();
   }, []);
+
+  if (error) return (
+    <div className={styles.loginWrap}>
+      <div className={styles.loginBox}>
+        <p style={{ color: 'red' }}>❌ {error}</p>
+        <button onClick={() => { setError(null); window.location.reload(); }}>
+          ลองใหม่
+        </button>
+      </div>
+    </div>
+  );
 
   if (!user) return (
     <div className={styles.loginWrap}>
