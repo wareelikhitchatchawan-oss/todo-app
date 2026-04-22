@@ -1,10 +1,19 @@
 {
-  "name": "todo-app",
+  "name": "backend",
   "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "cd backend && npm install && node server.js"
+    "start": "node server.js"
   },
-  "engines": {
-    "node": ">=18.0.0"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "pg": "^8.20.0"
   }
 }
